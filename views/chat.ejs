@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+
+ 
+
+   <style>
+   /* overlay  */
+  
+
+.btn-search{
+ 
+
+  margin-right: 10%;
+   float: right;
+ display: block;
+ color:#7378c5;
+ text-align: center;
+ padding: 22px 26px;
+ text-decoration: none;
+ font-size: 17px;
+ overflow: hidden;
+ background-color: #414A4C;
+
+}
+
+.btn-search:hover{
+  background-color: #ddd;
+  color: black;
+}
+
+
+
+
+
+        /* Add a black background color to the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #414A4C;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color:#7378c5;
+  text-align: center;
+  padding: 22px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 17px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav input[type=text] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+
+.profile{
+    width: 100%;
+    
+    background-color: #CCC;
+    height: 4em;
+    padding: 0;
+    margin-bottom: 1px;
+    text-align:left;
+   
+   
+    
+}
+span{
+    padding-top: 1.8em;
+    padding-left: 0.5em;
+}
+
+
+
+
+/* 
+.btn-search{
+   
+
+ } */
+
+ .btn-login{
+   
+
+    float: left;
+  display: block;
+  color:#7378c5;
+  text-align: center;
+  padding: 22px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  overflow: hidden;
+  background-color: #414A4C;
+  }
+
+
+  .topnav .btn-login:hover {
+  background-color: #ddd;
+  color: black;
+}
+  .overlay{
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    z-index: -1;
+    opacity: 0;
+    transition: 1s;
+  }
+  .showoverlay{
+    opacity: 1;
+    z-index: 1;
+  
+  }
+  .loginform{
+    width:350px ;
+    padding: 30px 30px;
+    background-color: rgb(172, 224, 231);
+    position: absolute;
+    transition: 1s;
+    left: 50%;
+    z-index: 9;
+    top: -50%;
+    box-shadow: 0px 0px 10px 30px #ccc;
+    transform: translate(-50%,-50%);
+    background: linear-gradient(to right,#db99af,#d6c196);
+    
+  }
+  .showloginform{
+    top: 45%;
+  }
+  .loginform input{
+    width: 100%;
+    padding: 10px 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    height:35px;
+  }
+  .loginform button{
+    width: 100%;
+    display: block;
+    background: linear-gradient(to right,#ff105f,#ffad06);
+    background-color: blue;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 30px;
+    align-items: center;
+  }
+  .loginform span{
+    position: absolute;
+    right: 0;
+    width: 30px;
+    cursor: pointer;
+    color: white;
+    height: 30px;
+    background-color: red;
+    text-align: center;
+    top: 0;
+  }
+
+
+  .btn-signup{
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    padding:0.7rem 1rem;
+    cursor: pointer;
+    background-color: rgb(20, 3, 70);
+    border-radius: 9px;
+    font-size: .8rem;
+    color:white; 
+    font-family: inherit;
+  }
+
+  .signupform{
+    width:350px ;
+    padding: 30px 30px;
+    background-color: rgb(172, 224, 231);
+    position: absolute;
+    transition: 0.8s;
+    left: 50%;
+    z-index: 9;
+    top: -50%;
+    box-shadow: 0px 0px 10px 30px #ccc;
+    transform: translate(-50%,-50%);
+    background: linear-gradient(to right,#db99af,#d6c196);
+  }
+  .showsignupform{
+    top: 50%;
+  }
+  .signupform input{
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    height:35px;
+  }
+  .signupform button{
+    width: 100%;
+    display: block;
+    background: linear-gradient(to right,#ff105f,#ffad06);
+    background-color: blue;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 30px;
+    align-items: center;
+  }
+  .signupform span{
+    position: absolute;
+    right: 0;
+    width: 30px;
+    cursor: pointer;
+    color: white;
+    height: 30px;
+    background-color: red;
+    text-align: center;
+    top: 0;
+  }
+  .h4{
+    align-items: center;
+    width: 100%;
+    padding: 10px 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    height:35px;
+  } 
+
+
+
+
+
+
+  .btn-login{
+   
+    background-color: transparent; 
+   float: left;
+ display: block;
+ color:#7378c5;
+ text-align: center;
+ padding: 22px 16px;
+ text-decoration: none;
+ font-size: 17px;
+ overflow: hidden;
+ background-color: #414A4C;
+ }
+
+
+ .topnav .btn-login:hover {
+ background-color: #ddd;
+ color: black;
+}
+ .overlays{
+   width: 100%;
+   position: fixed;
+   top: 0%;
+   background: rgba(0, 0, 0, 0.5);
+   height: 100vh;
+   z-index: -1;
+   opacity: 0;
+   transition: 1s;
+ }
+ .showoverlays{
+   opacity: 1;
+   z-index: 1;
+ 
+ }
+ .loginforms{
+   width:350px ;
+   padding: 30px 30px;
+   background-color: rgb(172, 224, 231);
+   position: absolute;
+   transition: 1s;
+   left: 50%;
+   z-index: 9;
+   top: -50%;
+   box-shadow: 0px 0px 10px 30px #ccc;
+   transform: translate(-50%,-50%);
+   background: linear-gradient(to right,#db99af,#d6c196);
+   
+ }
+ .showloginforms{
+   top: 45%;
+ }
+ .loginforms input{
+   width: 100%;
+   padding: 10px 10px;
+   margin-top: 2px;
+   margin-bottom: 10px;
+   height:35px;
+ }
+ .loginforms button{
+   width: 100%;
+   display: block;
+   background: linear-gradient(to right,#ff105f,#ffad06);
+   background-color: blue;
+   color: white;
+   padding: 10px 10px;
+   border-radius: 30px;
+   align-items: center;
+ }
+ .loginforms span{
+   position: absolute;
+   right: 0;
+   width: 30px;
+   cursor: pointer;
+   color: white;
+   height: 30px;
+   background-color: red;
+   text-align: center;
+   top: 0;
+ }
+
+
+ .btn-signups{
+   background-color: transparent;
+   border: 2px solid var(--primary-color);
+   padding:0.7rem 1rem;
+   cursor: pointer;
+   background-color: rgb(20, 3, 70);
+   border-radius: 9px;
+   font-size: .8rem;
+   color:white; 
+   font-family: inherit;
+ }
+
+ .signupforms{
+   width:350px ;
+   padding: 30px 30px;
+   background-color: rgb(172, 224, 231);
+   position: absolute;
+   transition: 0.8s;
+   left: 50%;
+   z-index: 9;
+   top: -50%;
+   box-shadow: 0px 0px 10px 30px #ccc;
+   transform: translate(-50%,-50%);
+   background: linear-gradient(to right,#db99af,#d6c196);
+ }
+ .showsignupforms{
+   top: 50%;
+ }
+ .signupforms input{
+   width: 100%;
+   padding: 10px 20px;
+   margin-top: 2px;
+   margin-bottom: 15px;
+   height:35px;
+ }
+ .signupforms button{
+   width: 100%;
+   display: block;
+   background: linear-gradient(to right,#ff105f,#ffad06);
+   background-color: blue;
+   color: white;
+   padding: 10px 10px;
+   border-radius: 30px;
+   align-items: center;
+ }
+ .signupforms span{
+   position: absolute;
+   right: 0;
+   width: 30px;
+   cursor: pointer;
+   color: white;
+   height: 30px;
+   background-color: red;
+   text-align: center;
+   top: 0;
+ }
+ .h4{
+   align-items: center;
+   width: 100%;
+   padding: 10px 10px;
+   margin-top: 2px;
+   margin-bottom: 10px;
+   height:35px;
+ } 
+ 
+ body{
+  background-color:#ff830017;
+}
+    </style>
+</head>
+<body>
+
+    <div class="topnav">
+        <a  href="/" >Home</a>
+
+        <button class="btn-login" onclick="showmodal()">Create a Group</button>
+
+   
+        <div class="overlay" onclick="closemodal()"></div>
+    <div class="loginform">
+      <h4>Create a Chat Group</h4>
+      <span>&times</span>
+      <form  id="form" action="/groupchats" method="POST" >
+        <div>
+          <input
+            type="text"
+            placeholder="Group Name eg:project_group,Ek tha tagore"
+            id="search"
+            class="search"
+            name="name"
+          />
+        </div>
+       
+        <div>
+         
+          <input
+            type="text"
+            placeholder="Add Users eg:Anupam,Kartik,Prince"
+            id="searchName1"
+            class="search"
+            name="user1"
+            
+          />
+        </div>
+        <div>
+         
+          <input
+            type="text"
+            placeholder="Add Users eg:Anupam,Kartik,Prince"
+            id="searchName2"
+            class="search"
+            name="user2"
+            
+          />
+        </div>
+        <div>
+         
+          <input
+            type="text"
+            placeholder="Add Users eg:Anupam,Kartik,Prince"
+            id="searchName3"
+            class="search"
+            name="user3"
+            
+          />
+        </div>
+        <div>
+         
+          <input
+            type="text"
+            placeholder="Add Users eg:Anupam,Kartik,Prince"
+            id="searchName4"
+            class="search"
+            name="user4"
+            
+          />
+        </div>
+        <div>
+         
+          <input
+            type="text"
+            placeholder="Add Users eg:Anupam,Kartik,Prince"
+            id="searchName5"
+            class="search"
+            name="user5"
+            
+          />
+        </div>
+        
+        <button>Create a Chat</button>
+        <div class="form-element">
+         
+        </div>
+      </form>
+    </div>
+    
+       
+
+       
+      
+        <button class="btn-search" onclick="showmodals()">Search for User</button>
+
+   
+        <div class="overlays" onclick="closemodals()"></div>
+
+      <div class="loginforms">
+      <h4>Search UserName</h4>
+      <span>&times</span>
+
+      <form action="/chats" method="POST">
+        
+        <div>
+          <input
+            type="text"
+            placeholder="Search Users eg:Akash,Srishti"
+            id="searchName"
+            class="searchs"
+            name="username"
+          />
+        </div>
+       
+        <button type="submit">Search</button>
+       
+       
+        <div class="form-elements">
+         
+        </div>
+      </form>
+    </div>
+
+    </div>
+
+
+        
+      
+         
+    
+    <main class="main">
+  
+    <div id="myData"  >
+     
+    </div> 
+  
+        
+  
+
+<script>
+//import axios from "axios";
+  // adding user to make group
+  const users=new Set;
+
+  // on submiting group chat form
+//   const groupChatName=Something;
+//  $('form').submit( async function(){
+//  groupChatName=  $('#search').innerHTML;
+//  const {data}=await axios.post("/groupchats",{
+//   name:groupChatName,
+//    users:users
+// }
+//  );
+   
+// });
+ 
+
+
+  // to get data.value in url
+  
+//   $("#getuser").submit(function(event){
+//     event.preventDefault();
+
+//     var unindexed_array = $(this).serializeArray();
+//     var data = {}
+
+//     $.map(unindexed_array, function(n, i){
+//         data[n['name']] = n['value']
+//     })
+
+
+//     var request = {
+//         "url" : `http://localhost:3000/getUser${data.value}`,
+//         "method" : "PUT",
+//         "data" : data
+//     }
+
+   
+
+// })
+
+ 
+
+
+
+// for pop-up page
+      function showmodal() {
+        document.querySelector(".overlay").classList.add("showoverlay");
+        document.querySelector(".loginform").classList.add("showloginform");
+      }
+      function displaymodal() {
+        document.querySelector(".overlay").classList.add("showoverlay");
+        document.querySelector(".signupform").classList.add("showsignupform");
+      }
+
+      var btnsignup = document.querySelector(".btn-signup");
+      // btnsignup.addEventListener("click", displaymodal);
+
+      function closemodal() {
+        document.querySelector(".overlay").classList.remove("showoverlay");
+        document.querySelector(".loginform").classList.remove("showloginform");
+        document
+          .querySelector(".signupform")
+          // .classList.remove("showsignupform");
+      }
+
+      var c = document.querySelector("span");
+      c.addEventListener("click", closemodal);
+
+      function terminatemodal() {
+        document.querySelector(".overlay").classList.remove("showoverlay");
+        document
+          .querySelector(".signupform")
+          .classList.remove("showsignupform");
+      }
+      var e = document.querySelector("span");
+      e.addEventListener("click", terminatemodal);
+
+// to get user on search
+function showmodals() {
+        document.querySelector(".overlays").classList.add("showoverlays");
+        document.querySelector(".loginforms").classList.add("showloginforms");
+      }
+      function displaymodals() {
+        document.querySelector(".overlays").classList.add("showoverlays");
+        document.querySelector(".signupforms").classList.add("showsignupforms");
+      }
+
+      var btnsignups = document.querySelector(".btn-signups");
+      // btnsignups.addEventListener("click", displaymodals);
+
+      function closemodals() {
+        document.querySelector(".overlays").classList.remove("showoverlays");
+        document.querySelector(".loginforms").classList.remove("showloginforms");
+        document
+          .querySelector(".signupforms")
+          // .classList.remove("showsignupforms");
+      }
+
+      var c = document.querySelector("span");
+      c.addEventListener("click", closemodals);
+
+      function terminatemodals() {
+        document.querySelector(".overlays").classList.remove("showoverlays");
+        document
+          .querySelector(".signupforms")
+          .classList.remove("showsignupforms");
+      }
+      var e = document.querySelector("span");
+      e.addEventListener("click", terminatemodals);
+
+      // for searching a user->autocomplete
+    
+      $(function(){
+     
+    $('#searchName').autocomplete({
+      
+    source: function(req,res){
+      $.ajax({
+        url:"autocomplete",
+        dataType:"jsonp",
+        type:"GET",
+        data:req,
+        success: function(data){
+          console.log(data);
+          res(data)
+        },
+        error: function(err){
+          console.log(err.status);
+        }
+      });
+    },
+    minLength:1,
+    select: function(event,ui){
+      if(ui.item){
+        $('#searchName').val(ui.item.label);
+      }
+    }
+    });
+      });
+      $(function(){
+     
+     $('#searchName1').autocomplete({
+       
+     source: function(req,res){
+       $.ajax({
+         url:"autocomplete",
+         dataType:"jsonp",
+         type:"GET",
+         data:req,
+         success: function(data){
+           console.log(data);
+           res(data)
+         },
+         error: function(err){
+           console.log(err.status);
+         }
+       });
+     },
+     minLength:1,
+     select: function(event,ui){
+       if(ui.item){
+         $('#searchName1').val(ui.item.label);
+       }
+     }
+     });
+       });
+       $(function(){
+     
+     $('#searchName2').autocomplete({
+       
+     source: function(req,res){
+       $.ajax({
+         url:"autocomplete",
+         dataType:"jsonp",
+         type:"GET",
+         data:req,
+         success: function(data){
+           console.log(data);
+           res(data)
+         },
+         error: function(err){
+           console.log(err.status);
+         }
+       });
+     },
+     minLength:1,
+     select: function(event,ui){
+       if(ui.item){
+         $('#searchName2').val(ui.item.label);
+       }
+     }
+     });
+       });
+       $(function(){
+     
+     $('#searchName3').autocomplete({
+       
+     source: function(req,res){
+       $.ajax({
+         url:"autocomplete",
+         dataType:"jsonp",
+         type:"GET",
+         data:req,
+         success: function(data){
+           console.log(data);
+           res(data)
+         },
+         error: function(err){
+           console.log(err.status);
+         }
+       });
+     },
+     minLength:1,
+     select: function(event,ui){
+       if(ui.item){
+         $('#searchName3').val(ui.item.label);
+       }
+     }
+     });
+       });
+       $(function(){
+     
+     $('#searchName4').autocomplete({
+       
+     source: function(req,res){
+       $.ajax({
+         url:"autocomplete",
+         dataType:"jsonp",
+         type:"GET",
+         data:req,
+         success: function(data){
+           console.log(data);
+           res(data)
+         },
+         error: function(err){
+           console.log(err.status);
+         }
+       });
+     },
+     minLength:1,
+     select: function(event,ui){
+       if(ui.item){
+         $('#searchName4').val(ui.item.label);
+       }
+     }
+     });
+       });
+
+       $(function(){
+     
+     $('#searchName5').autocomplete({
+       
+     source: function(req,res){
+       $.ajax({
+         url:"autocomplete",
+         dataType:"jsonp",
+         type:"GET",
+         data:req,
+         success: function(data){
+           console.log(data);
+           res(data)
+         },
+         error: function(err){
+           console.log(err.status);
+         }
+       });
+     },
+     minLength:1,
+     select: function(event,ui){
+       if(ui.item){
+         $('#searchName5').val(ui.item.label);
+       }
+     }
+     });
+       });
+      // to show friends of user
+      let datas=[];
+      let userid=0;
+
+    
+    fetch('http://localhost:9000/allchat').then(res => res.json()).then(data => {
+
+      fetch('http://localhost:9000/getid').then(res => res.json()).then(data1 => {
+           func1(data1);
+            console.log(data1);
+            console.log(data);
+                appendData(data1,data);
+                 func(data);
+           })
+           .catch(function (err) {
+               console.log('error: ' + err);
+           });
+             
+             
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+    
+         console.log(userid); 
+     async  function appendData(data1,data) {
+      console.log(userid);
+            var mainContainer = document.getElementById("myData");
+            
+            for (var i = 0; i < data.length; i++) {
+              let obj=data[i];
+              datas.push(obj);
+              
+                var div = document.createElement("div");
+
+                if(data[i].isGroupChat){
+                  div.classList.add("profile");
+                 
+                  div.innerHTML =  `
+                  
+                 
+                  ${data[i].chatName }
+                  
+                   `
+               
+                mainContainer.appendChild(div);
+
+
+             
+                }
+                else{
+                  div.classList.add("profile");
+                  if(data1==data[i].users[1]._id){
+                    div.innerHTML =  `
+                 
+                 
+                 ${data[i].users[0].userName}
+                 
+                  `
+                  }
+                  else{
+                    div.innerHTML =  `
+                 
+                 
+                 ${data[i].users[1].userName}
+                 
+                  `
+
+                  }
+                 
+               
+                mainContainer.appendChild(div);
+
+
+    
+        
+    
+                }
+
+   
+
+            }
+        }
+        
+        
+        // rendering message box
+
+
+
+
+
+   
+
+  let Profile = document.getElementsByClassName('profile');
+ 
+  
+   async function func(data){
+ 
+      for(var i=0;i<data.length;i++){  
+      
+        let obj=data[i]._id;
+    Profile[i].addEventListener('click',()=>{
+      console.log(obj);
+      window.location.href = `http://localhost:9000/newMessage/${obj}`;
+      
+        
+    })
+    }
+ 
+  }
+
+  async function func1(data){
+ 
+ 
+    id=data;
+
+}
+     
+      
+      
+  
+       
+     
+      
+    </script>
+
+
+   </main>
+</body>
+</html>
